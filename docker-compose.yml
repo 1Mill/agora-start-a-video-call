@@ -2,6 +2,7 @@ version: '3'
 
 services:
   client:
+    command: npm run serve
     image: node:16-alpine
     environment:
       HOST: 0.0.0.0
