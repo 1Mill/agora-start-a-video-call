@@ -12,6 +12,12 @@ const routes = [
 		path: '/01-learning-vue-3',
 		props: route => ({ someValue: route.query.someValue }),
 	},
+	{
+		component: () => import(/* webpackChunkName: "02-start-video-call" */ '@/views/02-start-video-call.vue'),
+		name: '02-start-video-call',
+		path: '/02-start-video-call',
+		props: route => ({ someValue: route.query.someValue }),
+	},
 ]
 
 const router = createRouter({
