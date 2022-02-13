@@ -1,5 +1,5 @@
 <script setup>
-import { ref, watch } from 'vue'
+import { onMounted, ref, watch } from 'vue'
 
 const props = defineProps({
 	someValue: {
@@ -8,14 +8,17 @@ const props = defineProps({
 	}
 })
 
+// * Counter logic
 const count = ref(parseInt(props.someValue))
 
 const increment = () => count.value++
 const reset = () => count.value = 0
 
-watch(count, () => {
-	console.log('Count Changed to: ', count.value)
-})
+watch(count, () => console.log('Count Changed to: ', count.value))
+
+// * Auto focus input
+const countInput = ref(null)
+onMounted(() => countInput.value.focus() )
 </script>
 
 <template>
@@ -31,6 +34,7 @@ watch(count, () => {
 <p>
 	<span :class="$style.example">{{ count }}</span>
 </p>
+<input v-model="count" type="number" ref="countInput"/>
 </template>
 <style module>
 .example {
