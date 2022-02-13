@@ -1,7 +1,14 @@
 <script setup>
 import { ref, watch } from 'vue'
 
-const count = ref(0)
+const props = defineProps({
+	someValue: {
+		default: 123,
+		type: [Number, String],
+	}
+})
+
+const count = ref(parseInt(props.someValue))
 
 const increment = () => count.value++
 const reset = () => count.value = 0

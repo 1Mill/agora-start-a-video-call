@@ -10,6 +10,7 @@ const routes = [
 		component: () => import(/* webpackChunkName: "01-learning-vue-3" */ '@/views/01-learning-vue-3.vue'),
 		name: '01-learning-vue-3',
 		path: '/01-learning-vue-3',
+		props: route => ({ someValue: route.query.someValue }),
 	},
 ]
 
