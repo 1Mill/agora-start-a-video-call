@@ -16,7 +16,6 @@ const routes = [
 		component: () => import(/* webpackChunkName: "02-start-video-call" */ '@/views/02-start-video-call.vue'),
 		name: '02-start-video-call',
 		path: '/02-start-video-call',
-		props: route => ({ someValue: route.query.someValue }),
 	},
 ]
 
