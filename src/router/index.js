@@ -7,9 +7,9 @@ const routes = [
 		path: '/',
 	},
 	{
-		component: () => import(/* webpackChunkName: "01-start-video-call" */ '@/views/01-start-video-call.vue'),
-		name: '01-start-video-call',
-		path: '/01-start-video-call',
+		component: () => import(/* webpackChunkName: "01-learning-vue-3" */ '@/views/01-learning-vue-3.vue'),
+		name: '01-learning-vue-3',
+		path: '/01-learning-vue-3',
 	},
 ]
 
