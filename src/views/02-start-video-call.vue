@@ -28,6 +28,11 @@
 	}, (err) => {
 		console.error('Client init failed', err)
 	})
+	client.join(process.env.VUE_APP_AGORA_TOKEN, 'testing-channel', null, uid => {
+		console.log("Successfully join channel: ", uid)
+	}, (err) => {
+		console.error("Error: ", err)
+	})
 </script>
 <template>
 	<h1>02 Start Video Call</h1>
