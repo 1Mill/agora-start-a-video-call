@@ -20,7 +20,7 @@
 	}
 
 	const client = AgoraRTC.createClient({
-		codec: 'vp8',
+		codec: 'h264',
 		mode: 'rtc',
 	})
 	client.init(process.env.VUE_APP_AGORA_APP_ID, () => {
