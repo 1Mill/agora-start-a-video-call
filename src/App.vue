@@ -9,8 +9,7 @@
 	</nav>
 	<router-view/>
 </template>
-<style scoped>
-a {
-	margin-right: 1rem;
-}
+<style>
+	a { margin: 0 0.25rem; }
+	body { padding: 1rem; }
 </style>
