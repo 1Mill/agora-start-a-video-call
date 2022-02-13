@@ -6,6 +6,11 @@ const routes = [
 		name: 'Home',
 		path: '/',
 	},
+	{
+		component: () => import(/* webpackChunkName: "01-start-video-call" */ '@/views/01-start-video-call.vue'),
+		name: '01-start-video-call',
+		path: '/01-start-video-call',
+	},
 ]
 
 const router = createRouter({
