@@ -28,5 +28,15 @@ watch(count, () => {
 <button @click="count = 100">
 	Set to 100
 </button>
-<p>{{ count }}</p>
+<p>
+	<span :class="$style.example">{{ count }}</span>
+</p>
 </template>
+<style module>
+.example {
+	border-radius: 100%;
+	border: 1px solid black;
+	font-size: 1.5rem;
+	padding: 1rem;
+}
+</style>
