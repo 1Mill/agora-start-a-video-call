@@ -18,6 +18,16 @@
 		const div = document.getElementById(id)
 		if (div) { div.parentNode.removeChild(div) }
 	}
+
+	const client = AgoraRTC.createClient({
+		codec: 'vp8',
+		mode: 'rtc',
+	})
+	client.init(process.env.VUE_APP_AGORA_APP_ID, () => {
+		console.log('Client init success')
+	}, (err) => {
+		console.error('Client init failed', err)
+	})
 </script>
 <template>
 	<h1>02 Start Video Call</h1>
