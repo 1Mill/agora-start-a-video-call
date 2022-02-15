@@ -7,7 +7,10 @@
 		// Create a new container for every stream
 		const div = document.createElement('div')
 		div.id = id
+		div.style.border = '1px solid blue'
+		div.style.height = '20rem'
 		div.style.transform = "rotateY(180deg)"
+		div.style.width = '20rem'
 
 		// Add div to remote container
 		remoteContainer.value.appendChild(div)
@@ -19,8 +22,10 @@
 		if (div) { div.parentNode.removeChild(div) }
 	}
 
+	const handleError = (err) => { console.error("Error: ", err) }
+
 	const client = AgoraRTC.createClient({
-		codec: 'h264',
+		codec: 'vp9',
 		mode: 'rtc',
 	})
 	client.init(process.env.VUE_APP_AGORA_APP_ID, () => {
@@ -38,8 +43,32 @@
 			localStream.play('me')
 			client.publish(localStream, (err) => { console.error("Error: ", err) })
 		})
-	}, (err) => {
-		console.error("Error: ", err)
+	}, handleError)
+
+	client.on('stream-added', (event) => {
+		client.subscribe(event.stream, handleError)
+		console.log('INFO: STREAM ADDED')
+	})
+	client.on('stream-subscribed', (event) => {
+		const { stream } = event
+		const id = String(stream.getId())
+		addVideoStream(id)
+		stream.play(id)
+		console.log('INFO: STREAM SUBSCRIBED')
+	})
+	client.on('stream-removed', (event) => {
+		const { stream } = event
+		const id = String(stream.getId())
+		stream.close()
+		removeVideoStream(id)
+		console.log('INFO: STREAM REMOVED')
+	})
+	client.on('peer-leave', (event) => {
+		const { stream } = event
+		const id = String(stream.getId())
+		stream.close()
+		removeVideoStream(id)
+		console.log('INFO: PEER LEAVE')
 	})
 </script>
 <template>
@@ -50,8 +79,6 @@
 
 	<h2>Remote Video</h2>
 	<div ref="remoteContainer">Remote Container</div>
-	<button @click="addVideoStream(1)">Add</button>
-	<button @click="removeVideoStream(1)">Remove</button>
 </template>
 <style module>
 	.videoStream {
