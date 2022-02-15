@@ -17,6 +17,11 @@ const routes = [
 		name: '02-start-video-call',
 		path: '/02-start-video-call',
 	},
+	{
+		component: () => import(/* webpackChunkName: "03-toggle-join-call" */ '@/views/03-toggle-join-call.vue'),
+		name: '03-toggle-join-call',
+		path: '/03-toggle-join-call',
+	},
 ]
 
 const router = createRouter({
