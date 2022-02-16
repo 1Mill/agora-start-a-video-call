@@ -1,6 +1,6 @@
 <script setup>
 	import { useAgoraClient } from '@/composables/useAgoraClient.js'
-	const { client } = useAgoraClient()
+	const { client } = await useAgoraClient()
 	console.log(client)
 </script>
 <template>
