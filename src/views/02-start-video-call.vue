@@ -1,5 +1,5 @@
 <script setup>
-	import AgoraRTC from 'agora-rtc-sdk'
+	import AgoraRTC from 'agora-rtc-sdk-v3'
 	import { ref } from 'vue'
 
 	const remoteContainer = ref(null)

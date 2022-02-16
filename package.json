@@ -7,7 +7,7 @@
     "build": "vue-cli-service build"
   },
   "dependencies": {
-    "agora-rtc-sdk": "^3.6.9",
+    "agora-rtc-sdk-v3": "npm:agora-rtc-sdk@^3.6.9",
     "core-js": "^3.6.5",
     "vue": "^3.0.0",
     "vue-router": "^4.0.0-0",
