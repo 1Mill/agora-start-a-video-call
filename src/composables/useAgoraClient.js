@@ -1,14 +1,18 @@
 import AgoraRTC from 'agora-rtc-sdk'
+import { runPromisify } from './useRunPromisify'
 
-export const useAgoraClient = () => {
+export const useAgoraClient = async () => {
 	const client = AgoraRTC.createClient({
 		codec: 'vp9',
 		mode: 'rtc',
 	})
 
-	client.init(process.env.VUE_APP_AGORA_APP_ID, () => {
+	try {
+		await runPromisify(client.init, process.env.VUE_APP_AGORA_APP_ID)
 		console.info('Agora Client Initiailized')
-	}, console.error)
+	} catch (err) {
+		console.error(err)
+	}
 
 	return { client }
 }
