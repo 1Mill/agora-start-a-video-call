@@ -13,14 +13,22 @@ export const useAgora = () => {
 	const join = async ({ channel, token }) => {
 		if (client.connectionState !== 'DISCONNECTED') { return }
 
-		const uid = await client.join(process.env.VUE_APP_AGORA_APP_ID, channel, token)
-		console.info('YOUR USER ID IS: ', uid)
+		try {
+			const uid = await client.join(process.env.VUE_APP_AGORA_APP_ID, channel, token)
+			console.info('YOUR USER ID IS: ', uid)
+		} catch (err) {
+			console.error(err)
+		}
 	}
 
 	const leave = async () => {
 		if (client.connectionState !== 'CONNECTED') { return }
 
-		await client.leave()
+		try {
+			await client.leave()
+		} catch (err) {
+			console.error(err)
+		}
 	}
 
 	return { join, leave }
