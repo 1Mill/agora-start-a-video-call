@@ -19,3 +19,8 @@
 		LEAVE
 	</button>
 </template>
+<style scoped>
+button {
+	margin: 0.25rem;
+}
+</style>
