@@ -1,13 +1,9 @@
-import { onMounted } from 'vue'
+import AgoraRTC from 'agora-rtc-sdk-v4'
 
 export const useAgora = () => {
-	let client = null
-
-	onMounted(() => {
-		client = window.AgoraRTC.createClient({
-			codec: 'vp9',
-			mode: 'rtc',
-		})
+	const client = AgoraRTC.createClient({
+		codec: 'vp9',
+		mode: 'rtc',
 	})
 
 	const join = async ({ channel, token }) => {
