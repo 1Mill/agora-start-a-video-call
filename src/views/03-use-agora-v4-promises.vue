@@ -2,8 +2,8 @@
 	import { computed } from 'vue'
 	import { useAgora } from '@/composables/useAgora'
 
-	const { join, leave } = useAgora()
 	const token = computed(() => process.env.VUE_APP_AGORA_TOKEN)
+	const { join, leave } = useAgora()
 </script>
 <template>
 	<h1>Toggle Join Call</h1>
