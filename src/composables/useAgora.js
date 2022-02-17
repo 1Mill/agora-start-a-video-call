@@ -2,8 +2,6 @@ import { onMounted } from 'vue'
 
 export const useAgora = () => {
 	let client = null
-	let localAudioStrack = null
-	let localVideoTrack = null
 
 	onMounted(() => {
 		client = window.AgoraRTC.createClient({
@@ -12,27 +10,18 @@ export const useAgora = () => {
 		})
 	})
 
-	const join = async () => {
-		const res = await window.AgoraRTC.createMicrophoneAndCameraTracks()
-		localAudioStrack = res[0]
-		localVideoTrack = res[1]
+	const join = async ({ channel, token }) => {
+		if (client.connectionState !== 'DISCONNECTED') { return }
 
-		localVideoTrack.play('me')
+		const uid = await client.join(process.env.VUE_APP_AGORA_APP_ID, channel, token)
+		console.info('YOUR USER ID IS: ', uid)
 	}
 
 	const leave = async () => {
-		client.unpublish()
+		if (client.connectionState !== 'CONNECTED') { return }
 
-		if (localVideoTrack) {
-			localVideoTrack.close()
-			localVideoTrack.stop()
-		}
-
-		if (localAudioStrack) {
-			localAudioStrack.close()
-			localAudioStrack.stop()
-		}
+		await client.leave()
 	}
 
-	return { leave, join }
+	return { join, leave }
 }
